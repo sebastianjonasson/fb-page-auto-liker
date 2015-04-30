@@ -1,5 +1,6 @@
 {
 	"app_id": "104200266579300",
 	"app_secret": "5bc1d08ef59ba0f01ccd18404318342b",
-	"page_id":"258154631512"
+	"page_id":"258154631512",
+	"server_url":"http://localhost:1337"
 }

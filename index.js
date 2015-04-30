@@ -1,11 +1,11 @@
 var express = require('express'),
 	request = require('request'),
 	app = express(),
-	credentials = require('./credentials.json');
+	config = require('./config.json');
 
-var app_id = credentials.app_id
-	app_secret = credentials.app_secret,
-	page_id = credentials.page_id,
+var app_id = config.app_id
+	app_secret = config.app_secret,
+	page_id = config.page_id,
 	short_token = "",
 	access_token = "";
 
