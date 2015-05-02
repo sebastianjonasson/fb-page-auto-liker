@@ -14,6 +14,7 @@ app.get('/auth', function(req, res) {
 	short_token = req.query.token;
 
 	getAndSetLongTermToken();
+	res.send(short_token);
 })
 
 var buildLongTermTokenUrl = function() {
@@ -52,6 +53,28 @@ setInterval(function() {
 	var options = {
 		method: "GET",
 		url: "https://graph.facebook.com/v2.3/"+page_id+"/feed?access_token="+access_token,
+	};
+
+	request(options, function(err, res, body) {
+		console.log("done");
+		var data = JSON.parse(body);
+		console.log(data);
+		data = data.data;
+
+		for(var i=0; i<data.length; i++) {
+			var opts = {
+				method: "POST",
+				url: "https://graph.facebook.com/v2.3/"+data[i].id+"/likes?access_token="+access_token
+			}
+			request(opts, function(e, res, body) {
+				console.log(body);
+			})
+		}
+	})
+	console.log(1)
+	var options = {
+		method: "GET",
+		url: "https://graph.facebook.com/v2.3/"+page_id+"/photos?type=uploaded&access_token="+access_token,
 	};
 
 	request(options, function(err, res, body) {
